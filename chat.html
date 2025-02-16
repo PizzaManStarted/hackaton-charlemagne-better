@@ -5,6 +5,7 @@
     <!-- Style sheet reference -->
     <link rel="stylesheet" type="text/css" href="chat_style.css">
     <script type="text/javascript" src="utils.js"></script>
+    <script type="text/javascript" src="chat_room.js"></script>
 </head>
 <body>
     
@@ -28,7 +29,7 @@
         
         <h2>Chat Messages</h2>
         <!-- Chat messages -->
-        <div class="scroll-container">
+        <div id="scroll-container" class="scroll-container">
             <div class="container">
                 <img src="/w3images/bandmember.jpg" alt="IA" style="width:100%;">
                 <p>Hello. How can I help you to learn today ?</p>
@@ -45,8 +46,8 @@
             <form>
                 <label for="fname">Ask query:</label>
                 <input type="text" id="fname" name="fname">
-                <input type="submit" value="Submit">
-            </form> 
+                <button onclick="createChatMessage()">FUn</button>
+            </form>
         </div>
         
     </div>
