@@ -29,6 +29,24 @@ If you used Miro, Figma or any other cloud based tools please put the links of t
 You will need to download the Ollama. 
 On linux, we recommand using this link : [Download Ollama on linux](https://ollama.com/download)
 
+Then download the `llama3.2` model using the following command
+```bash
+ollama pull llama3.2
+```
+
+To check if it's working by running the model on your machine.
+```bash
+ollama run llama3.2
+```
+After you are free to close it if everything went right. 
+
+
+### To run our demo
+
+In order to easily 
+
+
+
 ## Context
 
 This project was developed during CrossTechXperience Interreg project ([http://www.crosstechxperience.eu](http://www.crosstechxperience.eu)) Hackathon #1.
