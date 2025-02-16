@@ -41,8 +41,9 @@ margin-left: 20px;
 margin-right:0;
 }
 
-.container.darker p{
+.container.darker p {
     float: right;
+    text-align: right;
 }
 
 .container.darker form{
