@@ -1,29 +1,21 @@
 
 const url = "http://127.0.0.1:11434/api/generate";
 
-
-let is_answering_question = false;
-let last_question = "";
+const persona = "You are a teacher whose goal is to explain each steps and submit small excercices to find the solution of the question that was given by your student. For learning purpose you don't give any response, only tips. After each steps, end with an exercice if possible to check his understanding and then wait a input : the answer of the exercice or 'next' if there is no exercice. If the answer is wrong try to explain the last step differently. Here is the question of your student :"
+let chat = [[0, persona]];
 
 function query() {
 
-    if (is_answering_question) {
-        check_response()
-        return
-    } else {
-        is_answering_question = true;
-    }
-
-    console.log("asking AI...")
     let prompt = document.getElementById('fname').value;
-    last_question = prompt;
+    chat.push([0, prompt]);
     createChatMessage(0, prompt)
 
+    console.log(chat.map(x => (x[0] ? "IA :":"User : ") + x[1]).join("\n\n"))
     fetch(url, {
         method: "POST",
         body: JSON.stringify({
             model: "llama3.2",
-            prompt: `${prompt}. short guide, without markdown, without answer.`,
+            prompt: chat.map(x => (x[0] ? "IA :":"User : ") + x[1]).join("\n\n"),
             stream: false,
         }),
         headers: {
@@ -34,6 +26,7 @@ function query() {
             return response.json();
         })
         .then(function (data) {
+            chat.push([1, data.response]);
             createChatMessage(1, data.response)
         })
         .catch(function (err) {
@@ -71,24 +64,28 @@ function check_response() {
 
 function createChatMessage(who, text)
 {
+
+    console.log(text)
+
+    const newDiv = document.createElement("div");
+
+    sentences = text.split("\n")
+    sentences.forEach(s => {
+        newDiv.appendChild(document.createTextNode(s));
+        newDiv.appendChild(document.createElement("br"));
+    });
+    
+    newDiv.classList.add("container");
+    if (who) {
+        newDiv.classList.add("darker");
+        newDiv.classList.add("left");
+    } else {
+        newDiv.classList.add("right");
+    }
+    
     const currentDiv = document.getElementById("scroll-container");
-    const prefab = document.getElementsByClassName("container")[0].cloneNode(true);
-
-    // const newContent = document.createTextNode(text);
-    
-    // newDiv.classList.add("container");
-    // if (who) newDiv.classList.add("darker");
-
-    const newContent = document.getElementsByTagName("p")[0];
-    newContent.textContent = "Test"
-    
-    
-    
-
-    
-
-
-    currentDiv.appendChild(prefab);
+    // add the text node to the newly created div
+    currentDiv.appendChild(newDiv);
 
     console.log(currentDiv);
     
