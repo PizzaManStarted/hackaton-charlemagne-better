@@ -3,21 +3,19 @@
 
 function createChatMessage()
 {
-    // create a new div element
-    const newDiv = document.createElement("div");
+    const currentDiv = document.getElementById("scroll-container");
+    const prefab = document.getElementsByClassName("container")[0].cloneNode(true);
 
     // and give it some content
-    const newContent = document.createTextNode("Hi there and greetings!");
+    const newContent = document.getElementsByTagName("p")[0];
+    newContent.textContent = "Test"
     
-    newDiv.classList.add("container");
-    newDiv.classList.add("darker");
     
-    const currentDiv = document.getElementById("scroll-container");
+    
+    
 
-    // add the text node to the newly created div
-    newDiv.appendChild(newContent);
 
-    currentDiv.appendChild(newDiv);
+    currentDiv.appendChild(prefab);
 
     
     console.log(currentDiv);
