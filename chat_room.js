@@ -71,21 +71,24 @@ function check_response() {
 
 function createChatMessage(who, text)
 {
-    // create a new div element
-    const newDiv = document.createElement("div");
-
-    // and give it some content
-    const newContent = document.createTextNode(text);
-    
-    newDiv.classList.add("container");
-    if (who) newDiv.classList.add("darker");
-    
     const currentDiv = document.getElementById("scroll-container");
+    const prefab = document.getElementsByClassName("container")[0].cloneNode(true);
 
-    // add the text node to the newly created div
-    newDiv.appendChild(newContent);
+    // const newContent = document.createTextNode(text);
+    
+    // newDiv.classList.add("container");
+    // if (who) newDiv.classList.add("darker");
 
-    currentDiv.appendChild(newDiv);
+    const newContent = document.getElementsByTagName("p")[0];
+    newContent.textContent = "Test"
+    
+    
+    
+
+    
+
+
+    currentDiv.appendChild(prefab);
 
     console.log(currentDiv);
     
