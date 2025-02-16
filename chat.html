@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Style sheet reference -->
+    <link rel="stylesheet" type="text/css" href="chat_style.css">
+    <script type="text/javascript" src="utils.js"></script>
+</head>
+<body>
+    
+    
+    <!-- Side Navigation -->
+    <div id="side_window_nav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">Ask Charlemagne</a>
+        <a href="#">My worlds</a>
+        <a href="#">My achievement</a>
+
+    </div>
+    
+    
+    
+    <div id="main"">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+    <!-- &#9776 Gives us the three line symbol -->
+    
+    
+        
+        <h2>Chat Messages</h2>
+        <!-- Chat messages -->
+        <div class="scroll-container">
+            <div class="container">
+                <img src="/w3images/bandmember.jpg" alt="IA" style="width:100%;">
+                <p>Hello. How can I help you to learn today ?</p>
+                <span class="time-right">11:00</span>
+            </div>
+            <div class="container darker">
+                <img src="/w3images/avatar_g2.jpg" alt="Lucas" class="right" style="width:100%;">
+                <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
+                <span class="time-left">11:05</span>
+            </div>
+            
+        </div>
+        <div class="container darker">
+            <form>
+                <label for="fname">Ask query:</label>
+                <input type="text" id="fname" name="fname">
+                <input type="submit" value="Submit">
+            </form> 
+        </div>
+        
+    </div>
+    </body>
+</html>
