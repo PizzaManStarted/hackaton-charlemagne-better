@@ -1,17 +1,29 @@
 
+const url = "http://127.0.0.1:11434/api/generate";
 
-let boxes = [];
 
-async function query() {
+let is_answering_question = false;
+let last_question = "";
+
+function query() {
+
+    if (is_answering_question) {
+        check_response()
+        return
+    } else {
+        is_answering_question = true;
+    }
 
     console.log("asking AI...")
     let prompt = document.getElementById('fname').value;
-    boxes.push([0, prompt]);
+    last_question = prompt;
+    createChatMessage(0, prompt)
+
     fetch(url, {
         method: "POST",
         body: JSON.stringify({
             model: "llama3.2",
-            prompt: `${prompt}. short answer`,
+            prompt: `${prompt}. short guide, without markdown, without answer.`,
             stream: false,
         }),
         headers: {
@@ -22,47 +34,51 @@ async function query() {
             return response.json();
         })
         .then(function (data) {
-            boxes.push([1, data.response]);
-            
+            createChatMessage(1, data.response)
         })
         .catch(function (err) {
             console.log("Fetch Error :-S", err);
         });
 }
 
-function display() {
+function check_response() {
+    console.log("asking AI...")
+    let prompt = document.getElementById('fname').value;
+    createChatMessage(0, prompt)
 
-    const cells = boxes.map(e => {
-        if (e[0]) {
-
-        } else {
-
-        }
-    });
-
-    document.body.getElementsById("").innerHTML = cells;
+    fetch(url, {
+        method: "POST",
+        body: JSON.stringify({
+            model: "llama3.2",
+            prompt: `Is "${prompt}" the answer at the question "${last_question}" ? answer with Yes or No.`,
+            stream: false,
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+        },
+    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data.response)
+            createChatMessage(1, data.response)
+        })
+        .catch(function (err) {
+            console.log("Fetch Error :-S", err);
+        });
 }
 
-function create(htmlStr) {
-    var frag = document.createDocumentFragment(),
-        temp = document.createElement('div');
-    temp.innerHTML = htmlStr;
-    while (temp.firstChild) {
-        frag.appendChild(temp.firstChild);
-    }
-    return frag;
-}
-
-function createChatMessage()
+function createChatMessage(who, text)
 {
     // create a new div element
     const newDiv = document.createElement("div");
 
     // and give it some content
-    const newContent = document.createTextNode("Hi there and greetings!");
+    const newContent = document.createTextNode(text);
     
     newDiv.classList.add("container");
-    newDiv.classList.add("darker");
+    if (who) newDiv.classList.add("darker");
     
     const currentDiv = document.getElementById("scroll-container");
 
@@ -71,7 +87,6 @@ function createChatMessage()
 
     currentDiv.appendChild(newDiv);
 
-    
     console.log(currentDiv);
     
 }
