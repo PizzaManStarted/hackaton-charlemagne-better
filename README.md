@@ -43,8 +43,7 @@ After you are free to close it if everything went right.
 
 ### To run our demo
 
-In order to easily 
-
+In order to easily run the demo, simply run the [chat.html](/Code/chat.html) file using the [live server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) extension on **visual studio**.
 
 
 ## Context
