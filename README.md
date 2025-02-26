@@ -1,5 +1,5 @@
 # Charlemagne
-![alt text](./assets/logo_charlemagne.png)
+![alt text](./MediaSrc//logo_charlemagne.png)
 
 
 ## Pitch of the project
@@ -7,7 +7,7 @@
 The aim of this project is to provide students with an application whose main goal is to make them think about each steps involved to solve a problem. This application is not suppose to replace teachers but to help them guide their student towards a better utilization of AI.
 
 
-![alt text](./assets/mascott.png)
+![alt text](./MediaSrc/mascott.png)
 
 ## Team
 
@@ -17,7 +17,7 @@ The aim of this project is to provide students with an application whose main go
 3. Adrien Zianne : `Umons`
 3. Foucart Axel : `Umons`
 
-![alt text](./assets/GroupPicture.jpg)
+![alt text](./MediaSrc/GroupPicture.jpg)
 
 ## Structure of the folder
 
